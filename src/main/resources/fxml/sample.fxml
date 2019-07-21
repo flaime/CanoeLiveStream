@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" prefHeight="500.0" prefWidth="500.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="liveKanot.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <TextField fx:id="loppNummer" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <Button mnemonicParsing="false" onAction="#previousRace" text="föregående" GridPane.rowIndex="13" />
+      <Button mnemonicParsing="false" onAction="#nextRace" text="nästa" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+      <TextField fx:id="lopFile" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <TextField fx:id="titleFile" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <TextField fx:id="url" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label text="URL" GridPane.rowIndex="9" />
+      <Label text="Tittel fil" GridPane.rowIndex="10" />
+      <Label text="Lopp fil" GridPane.rowIndex="11" />
+      <Label text="rubrik content" GridPane.rowIndex="15" />
+      <TextField fx:id="fileContent" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <TextField fx:id="competition" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label text="Competition name" GridPane.rowIndex="8" />
+      <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+      <Label text=".json" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+      <Label text="Heat" GridPane.rowIndex="7" />
+      <Label text="m " GridPane.rowIndex="6" />
+      <Label text="FÖ" GridPane.rowIndex="5" />
+      <Label text="BF" GridPane.rowIndex="4" />
+      <Label text="AF" GridPane.rowIndex="3" />
+      <Label text="MH" GridPane.rowIndex="2" />
+      <TextField fx:id="MH" text="Mellanheat" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="AF" text="A-Final" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="BF" text="B-Final" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="FÖ" text="Försök" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <TextField fx:id="meter" text="m" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField fx:id="heat" text="Heat" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <TextField fx:id="finalÖvrig" text="-Final" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label text="final övriga" GridPane.rowIndex="1" />
+      <TextArea fx:id="json" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#updateData" text="Uppdatera" />
+            <Button mnemonicParsing="false" onAction="#writeToFile" text="Skriv till fil" />
+        </buttons>
+      </ButtonBar>
+      <CheckBox fx:id="removeåäö" mnemonicParsing="false" selected="true" text="clear å ä ö" GridPane.columnIndex="1" />
+   </children>
+</GridPane>
