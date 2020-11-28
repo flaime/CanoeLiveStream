@@ -70,7 +70,6 @@ public class Controller {
                 url,
                 competition,
                 loppNummer,
-                fileContent,
                 titleFile,
                 lopFile,
                 removeåäö,
@@ -88,6 +87,12 @@ public class Controller {
     }
 
     @FXML
+    public void nextRaceAndUpdate() throws IOException {
+        nextRace();
+        writeToFile();
+    }
+
+    @FXML
     public void nextRace() {
         try {
             Integer result = Integer.valueOf(loppNummer.getText());
@@ -99,6 +104,12 @@ public class Controller {
             loppNummer.setText("");
         }
 
+    }
+
+    @FXML
+    public void previousRaceAndUpdate() throws IOException {
+        previousRace();
+        writeToFile();
     }
 
     @FXML
