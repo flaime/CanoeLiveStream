@@ -1,0 +1,68 @@
+package liveKanot;
+
+import com.sun.tools.javac.util.List;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.TextField;
+
+import java.io.IOException;
+
+public class SaveController {
+
+    private List<Control> toSave;
+    public SaveController(List<Control> toSave) {
+        this.toSave = toSave;
+        toSave.forEach(it -> {
+            if (it instanceof TextField) {
+                ((TextField) it).textProperty().addListener((observable, oldValue, newValue) -> {
+                    safeSave();
+                });
+            }else if (it instanceof CheckBox)
+                ((CheckBox) it).selectedProperty().addListener((observable, oldValue, newValue) -> { safeSave(); });
+        });
+    }
+
+    public void loadSettings()  {
+        try {
+            String config = config = FileReaderOwn.readFile("settings.anna");
+            setSettings(config);
+        } catch (IOException e) {
+            System.err.println("Could not load file");
+        }
+    }
+
+    private void setSettings(String config) {
+        String lines[] = config.split("\\r?\\n");
+
+        for (int i = 0; i < toSave.size(); i++) {
+            Control control = toSave.get(i);
+            if (control instanceof TextField)
+                ((TextField) control).setText(lines[i + 1]);
+            else if (control instanceof CheckBox)
+                ((CheckBox) control).setSelected(lines[7].equalsIgnoreCase("false") ? false : true);
+        }
+
+    }
+
+    private void safeSave() {
+        try {
+            saveSettings();
+        } catch (IOException e) {
+            System.err.println("Could not save settings because of:");
+            e.printStackTrace();
+        }
+    }
+
+    private void  saveSettings() throws IOException {
+        String[] save = {"Settings for the program the order is important\n"};
+
+        toSave.forEach(it -> {
+            if (it instanceof TextField)
+                save[0] += ((TextField) it).getText() + "\n";
+            else if (it instanceof CheckBox)
+                save[0] += (((CheckBox) it).isSelected() ? "true" : "false") + "\n";
+        });
+
+        FileWriterOwn.writeFile("settings.anna", save[0]);
+    }
+}

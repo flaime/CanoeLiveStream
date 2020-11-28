@@ -4,8 +4,10 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.sun.tools.javac.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import liveKanot.entities.Bana;
@@ -14,7 +16,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-
 
 public class Controller {
 
@@ -60,6 +61,31 @@ public class Controller {
     private TextField heat;
 
     //-----
+
+    SaveController saveController = null;
+
+    @FXML
+    protected void initialize() throws IOException {
+        List<Control> toSave = List.of(
+                url,
+                competition,
+                loppNummer,
+                fileContent,
+                titleFile,
+                lopFile,
+                removeåäö,
+                MH,
+                AF,
+                BF,
+                FÖ,
+                finalÖvrig,
+                meter,
+                heat
+        );
+
+        saveController = new SaveController(toSave);
+        saveController.loadSettings();
+    }
 
     @FXML
     public void nextRace() {
