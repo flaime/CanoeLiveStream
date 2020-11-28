@@ -5,12 +5,14 @@ public class Bana {
     String namn;
     String tid;
     String bana;
+    String clubb;
 
-    public Bana(String placering, String namn, String tid, String bana) {
+    public Bana(String placering, String namn, String tid, String bana,String clubb) {
         this.placering = placering;
         this.namn = namn;
         this.tid = tid;
         this.bana = bana;
+        this.clubb = clubb;
     }
 
     public String getPlacering() {
@@ -43,5 +45,13 @@ public class Bana {
 
     public void setBana(String bana) {
         this.bana = bana;
+    }
+
+    public String getClubb() {
+        return clubb;
+    }
+
+    public void setClubb(String clubb) {
+        this.clubb = clubb;
     }
 }

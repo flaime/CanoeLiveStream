@@ -159,8 +159,9 @@ public class Controller {
             final int place = track.getInt("place");
             final String time = track.getString("time");
             final String banNummer = track.getString("trackNumber");
+            final String clubb = track.getString("clubb");
 
-            final Bana bana = new Bana(place+"", forname, time,banNummer);
+            final Bana bana = new Bana(place+"", forname, time,banNummer,clubb);
 
             banor.add(bana);
         }
@@ -187,6 +188,7 @@ public class Controller {
             jsonHokus += "\"person" + (bulk + 1) + "Bana\": \"" + bana.getBana() + "\",\n";
             jsonHokus += "\"person" + (bulk + 1) + "Placering\": \"" + (timeExist ? (i+1) : "--") + "\",\n";
             jsonHokus += "\"person" + (bulk + 1) + "Time\": \"" + (bana.getTid().equals("null") ? "" : bana.getTid()) + (banor.size() - 1 == i || bulk == 9 ? "\"" : "\",\n");
+            jsonHokus += "\"person" + (bulk + 1) + "Clubb\": \"" + bana.getClubb() + "\",\n";
             bulk++;
         }
 
