@@ -1,11 +1,11 @@
 package liveKanot;
 
-import com.sun.tools.javac.util.List;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SaveController {
 

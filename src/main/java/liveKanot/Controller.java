@@ -4,7 +4,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.sun.tools.javac.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
@@ -15,7 +14,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 public class Controller {
 
@@ -66,7 +67,7 @@ public class Controller {
 
     @FXML
     protected void initialize() throws IOException {
-        List<Control> toSave = List.of(
+        List<Control> toSave = Arrays.asList(
                 url,
                 competition,
                 loppNummer,
