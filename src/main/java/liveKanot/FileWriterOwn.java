@@ -11,7 +11,6 @@ public class FileWriterOwn {
         BufferedWriter writer = new BufferedWriter(new java.io.FileWriter(fileName));
         writer.write(fileContent);
 
-
         writer.close();
     }
 }

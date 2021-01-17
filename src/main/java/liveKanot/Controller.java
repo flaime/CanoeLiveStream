@@ -1,6 +1,5 @@
 package liveKanot;
 
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -9,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import liveKanot.data.DataFetcher;
 import liveKanot.data.RaceData;
+import liveKanot.entities.Race;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -132,13 +132,11 @@ public class Controller {
     public void updateData() throws UnirestException {
         System.out.println("Start update");
 
-        final String raceNumber = this.loppNummer.getText();
+        Race race = new DataFetcher().getRace(this.loppNummer.getText(), url.getText(), competition.getText(), removeåäö.isSelected());
 
-        final JsonNode races = new DataFetcher().getRace(raceNumber, url.getText(), competition.getText());
+        fileContent.setText(RaceData.getHeaderText(race, this));
 
-        fileContent.setText(RaceData.getHeaderText(races, raceNumber, this));
-
-        json.setText(RaceData.getRacesJson(races, removeåäö.isSelected()));
+        json.setText(RaceData.getRacesJson(race));
 
     }
 

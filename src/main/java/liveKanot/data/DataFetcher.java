@@ -4,10 +4,14 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import liveKanot.entities.Race;
 
 public class DataFetcher {
 
-    public JsonNode getRace(String raceNumber, String competition, String baseUrl) throws UnirestException {
+    public Race getRace(String raceNumber, String competition, String baseUrl, boolean removeÅÄÖ) throws UnirestException {
+        return new Race(getRaceJsonNode(raceNumber, competition, baseUrl),raceNumber, removeÅÄÖ);
+    }
+    public JsonNode getRaceJsonNode(String raceNumber, String competition, String baseUrl) throws UnirestException {
         String url = baseUrl + "/api/competitions/" + competition + "/" + raceNumber;
 
         System.out.println("Url: " + url);
