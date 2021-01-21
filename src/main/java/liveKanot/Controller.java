@@ -136,7 +136,7 @@ public class Controller {
 
         fileContent.setText(RaceData.getHeaderText(race, this));
 
-        json.setText(RaceData.getRacesJson(race));
+        json.setText(RaceData.racesJson(race,15,0));
 
     }
 

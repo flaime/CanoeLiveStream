@@ -4,16 +4,17 @@ import com.mashape.unirest.http.JsonNode;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Race {
-    private ArrayList<Bana> banor;
+    private List<Bana> banor;
     private String raceClass;
     private String type;
     private int typeNumber;
     private String distance;
     private String raceNumber;
 
-    public Race(ArrayList<Bana> banor, String raceClass, String type, int typeNumber, String distance, String raceNumber) {
+    public Race(List<Bana> banor, String raceClass, String type, int typeNumber, String distance, String raceNumber) {
         this.banor = banor;
         this.raceClass = raceClass;
         this.type = type;
@@ -31,7 +32,7 @@ public class Race {
         this.raceNumber = raceNumber;
     }
 
-    public ArrayList<Bana> getBanor() {
+    public List<Bana> getBanor() {
         return banor;
     }
 

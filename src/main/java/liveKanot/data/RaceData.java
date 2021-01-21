@@ -6,6 +6,7 @@ import liveKanot.entities.Race;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class RaceData {
 
@@ -17,16 +18,10 @@ public class RaceData {
         return "Heat " + race.getRaceNumber() + " " + raceClass + " " + race.getDistance() + "m " + type + " " + race.getTypeNumber();
     }
 
-    public static String getRacesJson(Race race) {
-        ArrayList<Bana> banor = race.getBanor();
+    public static String getRacesJsonBulkar(Race race) {
+        List<Bana> banor = race.getBanor();
 
-        banor.sort(Comparator.comparing(Bana::getBana));
-        final boolean timeExist = banor.stream()
-                .anyMatch(bana -> !bana.getTid().equals("null"));
-        if(timeExist)
-            banor.sort(Comparator.comparing(Bana::getTid));
-
-        System.out.println("Time exist" + timeExist);
+        final boolean timeExist = sortPrimaryByTimeElseByBanaNr(banor);
 
         String jsonHokus = "{ \"bulkar\" : [ {";
 
@@ -49,6 +44,30 @@ public class RaceData {
 
         jsonHokus += "}]}";
         return jsonHokus;
+    }
+
+    public static String racesJson(Race race, int limit, int offset) {
+        List<Bana> banor = race.getBanor();
+        sortPrimaryByTimeElseByBanaNr(banor);
+
+        String jsonHokus = "{ \"bulkar\" : [ {";
+
+        for (int i = offset * limit; i < offset * limit + limit && i < banor.size(); i++) {
+            Bana bana = banor.get(i);
+            jsonHokus += "\"person" +  (i - offset * limit) + "Lopp\": \"" + race.getRaceNumber() + "\",\n";
+//            jsonHokus += "\"person" +  (i - offset * limit) + "StartTid\": \"" + race.get + "\",\n";
+            jsonHokus += "\"person" +  (i - offset * limit) + "Name\": \"" + bana.getNamn() + "\",\n";
+        }
+        jsonHokus += "}]}";
+        return jsonHokus;
+    }
+    private static boolean sortPrimaryByTimeElseByBanaNr(List<Bana> banor) {
+        banor.sort(Comparator.comparing(Bana::getBana));
+        final boolean timeExist = banor.stream()
+                .anyMatch(bana -> !bana.getTid().equals("null"));
+        if(timeExist)
+            banor.sort(Comparator.comparing(Bana::getTid));
+        return timeExist;
     }
 
     private static String normaliseRaceClass(String data) {
