@@ -9,13 +9,13 @@ import liveKanot.entities.Race;
 public class DataFetcher {
 
     public Race getRace(String raceNumber, String competition, String baseUrl, boolean removeÅÄÖ) throws UnirestException {
-        if(competition.equals("test"))
+        if(competition.equalsIgnoreCase("testdata"))
             return MockData.getMockData(raceNumber,competition,removeÅÄÖ);
         else
             return new Race(getRaceJsonNode(raceNumber, competition, baseUrl),raceNumber, removeÅÄÖ);
     }
     public JsonNode getRaceJsonNode(String raceNumber, String competition, String baseUrl) throws UnirestException {
-        String url = baseUrl + "/api/competitions/" + competition + "/" + raceNumber;
+        String url = (baseUrl.endsWith("/")? baseUrl : baseUrl+"/" )+ "api/competitions/" + competition + "/" + raceNumber;
 
         System.out.println("Url: " + url);
 

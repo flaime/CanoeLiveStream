@@ -132,7 +132,7 @@ public class Controller {
     public void updateData() throws UnirestException {
         System.out.println("Start update");
 
-        Race race = new DataFetcher().getRace(this.loppNummer.getText(), url.getText(), competition.getText(), removeåäö.isSelected());
+        Race race = new DataFetcher().getRace(this.loppNummer.getText(), competition.getText(), url.getText(), removeåäö.isSelected());
 
         fileContent.setText(RaceData.getHeaderText(race, this));
 

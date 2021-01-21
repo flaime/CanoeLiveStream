@@ -9,7 +9,8 @@ import java.util.List;
 public class MockData {
 
     public static Race getMockData(String raceNumber, String competition, boolean removeÅÄÖ){
-        return new Race(getMockBanor(removeÅÄÖ),"H22","försök",1,"200m",raceNumber);
+        System.out.println("Fetching mock data");
+        return new Race(getMockBanor(removeÅÄÖ),"H221","försök",1,"200",raceNumber);
     }
 
 

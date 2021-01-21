@@ -71,6 +71,8 @@ public class RaceData {
     }
 
     private static String normaliseRaceClass(String data) {
-        return data.substring(0, 1).equalsIgnoreCase("C") ? data.substring(1, 3) + " C" + data.substring(3, 4) : data.substring(0, 3) + " K" + data.substring(3, 4);
+        return data.substring(0, 1).equalsIgnoreCase("C")
+                ? data.substring(1, 3) + " C" + data.substring(3, 4)
+                : data.substring(0, 3) + " K" + data.substring(3, 4);
     }
 }
