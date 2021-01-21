@@ -70,6 +70,10 @@
                         <TextField fx:id="finalÖvrig" text="-Final" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="final övriga" GridPane.rowIndex="1" />
                         <CheckBox fx:id="removeåäö" mnemonicParsing="false" selected="true" text="clear å ä ö" GridPane.columnIndex="1" />
+                        <Label text="URL" GridPane.rowIndex="11" />
+                        <TextField fx:id="url" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <TextField fx:id="competition" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label text="Competition name" GridPane.rowIndex="10" />
 
                      </children>
                   </GridPane>
@@ -80,6 +84,7 @@
 
       <GridPane alignment="center" hgap="10" prefHeight="500.0" prefWidth="500.0" vgap="10">
          <columnConstraints>
+            <ColumnConstraints />
             <ColumnConstraints />
             <ColumnConstraints />
             <ColumnConstraints />
@@ -96,16 +101,12 @@
             <RowConstraints />
          </rowConstraints>
          <children>
-            <TextField fx:id="loppNummer" prefWidth="250.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#nextRaceAndUpdate" text="nästa &amp; update" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField fx:id="url" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="URL" GridPane.rowIndex="1" />
+            <TextField fx:id="loppNummer" prefWidth="250.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#nextRaceAndUpdate" text="nästa &amp; update" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="rubrik content" GridPane.rowIndex="5" />
-            <TextField fx:id="fileContent" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="competition" GridPane.columnIndex="1" />
-            <Label text="Competition name" />
-            <TextArea fx:id="json" prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="fileContent" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextArea fx:id="json" prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <buttons>
                   <Button mnemonicParsing="false" onAction="#updateData" text="Uppdatera" />
                   <Button mnemonicParsing="false" onAction="#writeToFile" text="Skriv till fil" />
@@ -113,7 +114,7 @@
             </ButtonBar>
             <Button mnemonicParsing="false" onAction="#previousRace" text="förra" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" onAction="#previousRaceAndUpdate" text="förra &amp; update" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#nextRace" text="nästa" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#nextRace" text="nästa" GridPane.columnIndex="4" GridPane.rowIndex="2" />
 
          </children>
       </GridPane>
