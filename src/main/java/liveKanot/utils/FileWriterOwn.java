@@ -1,4 +1,4 @@
-package liveKanot;
+package liveKanot.utils;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

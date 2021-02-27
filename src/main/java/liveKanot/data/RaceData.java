@@ -1,16 +1,15 @@
 package liveKanot.data;
 
-import liveKanot.Controller;
+import liveKanot.UiController.MainController;
 import liveKanot.entities.Bana;
 import liveKanot.entities.Race;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class RaceData {
 
-    public static String getHeaderText(Race race,Controller backReference){
+    public static String getHeaderText(Race race, MainController backReference){
 
         final String raceClass = normaliseRaceClass(race.getRaceClass());
         final String type = backReference.normaliseType(race.getType());

@@ -1,4 +1,4 @@
-package liveKanot;
+package liveKanot.utils;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
@@ -34,6 +34,7 @@ public class SaveController {
     private void setSettings(String config) {
         String lines[] = config.split("\\r?\\n");
 
+        if(lines.length -1 == toSave.size())
         for (int i = 0; i < toSave.size(); i++) {
             Control control = toSave.get(i);
             if (control instanceof TextField)
@@ -41,10 +42,12 @@ public class SaveController {
             else if (control instanceof CheckBox)
                 ((CheckBox) control).setSelected(lines[7].equalsIgnoreCase("false") ? false : true);
         }
+        else
+            System.out.println("File is wrong could not load settings");
 
     }
 
-    private void safeSave() {
+    public void safeSave() {
         try {
             saveSettings();
         } catch (IOException e) {
