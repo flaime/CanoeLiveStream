@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import liveKanot.utils.OpenUrlInBrowser;
 import liveKanot.utils.SaveController;
 import liveKanot.data.DataFetcher;
 import liveKanot.entities.Race;
@@ -26,17 +27,11 @@ import java.util.List;
 
 public class MainController {
 
-
-
-
     @FXML
     private TextField loppNummerStartListor;
 
     @FXML
     private TextField loppNummerResultatListor;
-
-
-
 
     SaveController saveController = null;
     private Stage stage;
@@ -56,13 +51,13 @@ public class MainController {
 
         saveController = new SaveController(toSave);
         saveController.loadSettings();
-        if(settings.getCompetition().isEmpty() || settings.getUrl().isEmpty()){
+        if (settings.getCompetition().isEmpty() || settings.getUrl().isEmpty()) {
             promtForUrlAndCompetitionname();
             saveController.safeSave();
         }
     }
 
-    public void promtForUrlAndCompetitionname(){
+    public void promtForUrlAndCompetitionname() {
         Stage newStage = new Stage();
 
         VBox comp = new VBox();
@@ -86,9 +81,9 @@ public class MainController {
 
         Button ok = new Button("Spara");
         ok.setOnAction(action -> {
-            if(competitionName.getText().isEmpty() || urlText.getText().isEmpty()) {
+            if (competitionName.getText().isEmpty() || urlText.getText().isEmpty()) {
                 info.setText("Du måste skriva in värden för båda dessa för du kan gå vidare.");
-            }else{
+            } else {
                 settings.setCompetition(competitionName.getText());
                 settings.setUrl(urlText.getText());
                 newStage.close();
@@ -96,10 +91,10 @@ public class MainController {
         });
 
         newStage.setOnCloseRequest(event -> {
-            if(competitionName.getText().isEmpty() || urlText.getText().isEmpty()) {
+            if (competitionName.getText().isEmpty() || urlText.getText().isEmpty()) {
                 event.consume();
                 info.setText("Du måste skriva in värden för båda dessa för du kan gå vidare.");
-            }else{
+            } else {
                 settings.setCompetition(competitionName.getText());
                 settings.setUrl(urlText.getText());
                 newStage.close();
@@ -114,21 +109,24 @@ public class MainController {
         newStage.setScene(stageScene);
         newStage.initModality(Modality.APPLICATION_MODAL);
         newStage.showAndWait();
-//        newStage.show();
     }
 
+    @FXML
+    public void close() {
+        saveController.safeSave();
+        System.exit(0);
+    }
 
-    //-------------------------
-    //------------------------- början på nytt
-    //-------------------------
+    @FXML
+    public void openCompetitionProgram() {
+        OpenUrlInBrowser.openURL(settings.getUrl() + "/competition/" + settings.getCompetition());
+    }
 
     @FXML
     public void nextRaceResultAndUpdate() throws IOException {
         nextRaceResults();
         writeToFile();
     }
-
-
 
     @FXML
     public void nextRaceResults() {
@@ -197,17 +195,11 @@ public class MainController {
 //        json.setText(RaceData.racesJson(race, 15, 0));//TODO need to change to corect file
     }
 
-    //-------------------------
-    //------------------------- slut på nytt
-    //-------------------------
-
-
     @FXML
     public void previousRaceAndUpdate() throws IOException {
         previousRaceResults();
         writeToFile();
     }
-
 
     @FXML
     public void writeToFile() throws IOException {
@@ -215,9 +207,9 @@ public class MainController {
 //        FileWriterOwn.writeFile(settings.getLoppFile() + ".json", json.getText());
     }
 
-
     private Stage settingsStage = new Stage();
     SettingsController settings = new SettingsController();
+
     @FXML
     public void openSettings() throws IOException {
         settingsStage.show();
@@ -257,7 +249,7 @@ public class MainController {
             loppNummerResultatListor.setText("Could not write to file");
             loppNummerStartListor.setText("Could not write to file");
         }
-        return new Race(null,null, true);
+        return new Race(null, null, true);
     }
 
     public String normaliseType(String type) {
@@ -275,6 +267,4 @@ public class MainController {
         else
             return type;
     }
-
-
 }

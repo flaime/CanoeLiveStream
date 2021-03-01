@@ -16,7 +16,6 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception{
         Utils4J.addToClasspath("file:///"+System.getProperty("java.home")+ File.separator+"lib"+File.separator+"jfxrt.jar");
 
-//        String fxmlFile = "/fxml/settings.fxml";
         String fxmlFile = "/fxml/GUI.fxml";
         FXMLLoader loader = new FXMLLoader();
         Parent root = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
@@ -26,7 +25,6 @@ public class MainApp extends Application {
         primaryStage.setScene(new Scene(root, 605, 400));
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

@@ -22,18 +22,17 @@
           <Menu mnemonicParsing="false" text="Arkiv">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#openSettings" text="Inställningar" />
-              <MenuItem mnemonicParsing="false" text="Stäng" />
+              <MenuItem mnemonicParsing="false" onAction="#close" text="Stäng"/>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Tävlingsinfo" />
-                  <MenuItem mnemonicParsing="false" text="Program" />
+                <MenuItem mnemonicParsing="false" onAction="#openCompetitionProgram" text="Program"/>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Hjälp">
             <items>
-              <MenuItem mnemonicParsing="false" text="Om FXML" />
+                <MenuItem mnemonicParsing="false" text="Om"/>
             </items>
           </Menu>
         </menus>
