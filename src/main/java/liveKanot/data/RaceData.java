@@ -1,6 +1,7 @@
 package liveKanot.data;
 
 import liveKanot.UiController.MainController;
+import liveKanot.UiController.SettingsController;
 import liveKanot.entities.Bana;
 import liveKanot.entities.Race;
 
@@ -9,10 +10,10 @@ import java.util.List;
 
 public class RaceData {
 
-    public static String getHeaderText(Race race, MainController backReference){
+    public static String getHeaderText(Race race, SettingsController settings) {
 
-        final String raceClass = normaliseRaceClass(race.getRaceClass());
-        final String type = backReference.normaliseType(race.getType());
+        final String raceClass = race.normaliseRaceClass();
+        final String type = race.normaliseType(settings);
 
         return "Heat " + race.getRaceNumber() + " " + raceClass + " " + race.getDistance() + "m " + type + " " + race.getTypeNumber();
     }
@@ -67,11 +68,5 @@ public class RaceData {
         if(timeExist)
             banor.sort(Comparator.comparing(Bana::getTid));
         return timeExist;
-    }
-
-    private static String normaliseRaceClass(String data) {
-        return data.substring(0, 1).equalsIgnoreCase("C")
-                ? data.substring(1, 3) + " C" + data.substring(3, 4)
-                : data.substring(0, 3) + " K" + data.substring(3, 4);
     }
 }

@@ -3,7 +3,6 @@ package liveKanot.UiController;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.util.Arrays;
@@ -18,7 +17,7 @@ public class SettingsController {
     private TextField competition;
 
     @FXML
-    private TextField titleFile;
+    private TextField messageFile;
 
     @FXML
     private TextField lopFile;
@@ -41,10 +40,15 @@ public class SettingsController {
     private TextField meter;
     @FXML
     private TextField heat;
+    @FXML
+    private TextField resultatFile;
+    @FXML
+    private TextField importantMessageFile;
 
     //-----
 
     private MainController mainController;
+
     public void setMainUi(MainController controller) {
         mainController = controller;
     }
@@ -53,7 +57,7 @@ public class SettingsController {
         return Arrays.asList(
                 url,
                 competition,
-                titleFile,
+                messageFile,
                 lopFile,
                 removeåäö,
                 MH,
@@ -62,7 +66,9 @@ public class SettingsController {
                 FÖ,
                 finalÖvrig,
                 meter,
-                heat
+                heat,
+                resultatFile,
+                importantMessageFile
         );
     }
 
@@ -87,7 +93,7 @@ public class SettingsController {
     }
 
     public String getAFinal() {
-        return BF.getText();
+        return AF.getText();
     }
 
     public String getMellanHeat() {
@@ -98,12 +104,28 @@ public class SettingsController {
         return finalÖvrig.getText();
     }
 
-    public String getTitleFile() {
-        return titleFile.getText();
+    public String getMessageFile() {
+        return messageFile.getText();
     }
 
     public String getLoppFile() {
         return lopFile.getText();
+    }
+
+    public String getResultatFile() {
+        return resultatFile.getText();
+    }
+
+    public void setResultatFile(String resultatFile) {
+        this.resultatFile.setText(resultatFile);
+    }
+
+    public String getImportantMessageFile() {
+        return importantMessageFile.getText();
+    }
+
+    public void setImportantMessageFile(String importantMessageFile) {
+        this.importantMessageFile.setText(importantMessageFile);
     }
 
     public void setCompetition(String competitionName) {

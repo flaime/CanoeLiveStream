@@ -6,15 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import liveKanot.utils.FileWriterOwn;
 import liveKanot.utils.OpenUrlInBrowser;
 import liveKanot.utils.SaveController;
 import liveKanot.data.DataFetcher;
@@ -33,6 +31,18 @@ public class MainController {
     @FXML
     private TextField loppNummerResultatListor;
 
+    @FXML
+    private TextArea resultHeder;
+
+    @FXML
+    private TextArea startlistHeder;
+
+    @FXML
+    private TextField importantMessage;
+
+    @FXML
+    private TextField message;
+
     SaveController saveController = null;
     private Stage stage;
 
@@ -44,7 +54,9 @@ public class MainController {
     protected void initialize() throws IOException {
         List<Control> toSave = new LinkedList<>(Arrays.asList(
                 loppNummerStartListor,
-                loppNummerResultatListor
+                loppNummerResultatListor,
+                importantMessage,
+                message
         ));
 
         toSave.addAll(createSettingsDialog());
@@ -123,6 +135,16 @@ public class MainController {
     }
 
     @FXML
+    public void saveImportantMessage() throws IOException {
+        FileWriterOwn.writeFile(settings.getImportantMessageFile() + ".txt", importantMessage.getText());
+    }
+
+    @FXML
+    public void saveMessage() throws IOException {
+        FileWriterOwn.writeFile(settings.getMessageFile() + ".txt", message.getText());
+    }
+
+    @FXML
     public void nextRaceResultAndUpdate() throws IOException {
         nextRaceResults();
         writeToFile();
@@ -180,6 +202,8 @@ public class MainController {
     @FXML
     public void updateResults() {
         Race race = getData(loppNummerResultatListor.getText());
+
+        resultHeder.setText(race.getDistance() + " m " + race.normaliseType(settings) + " " + race.normaliseRaceClass());
 
 //        fileContent.setText(RaceData.getHeaderText(race, this));//TODO need to change to corect file
 //
@@ -252,19 +276,4 @@ public class MainController {
         return new Race(null, null, true);
     }
 
-    public String normaliseType(String type) {
-        if (type.equals("FÖ"))
-            return settings.getFörsök();
-        else if (type.equals("BF"))
-            return settings.getBFinal();
-        else if (type.equals("AF"))
-            return settings.getAFinal();
-        else if (type.equals("MH"))
-            return settings.getMellanHeat();
-        else if (type.length() == 2 && type.substring(1, 1).equals("F"))
-            return type.substring(0, 1) + settings.getFinalÖvrigt();
-
-        else
-            return type;
-    }
 }

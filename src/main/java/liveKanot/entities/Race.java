@@ -1,6 +1,7 @@
 package liveKanot.entities;
 
 import com.mashape.unirest.http.JsonNode;
+import liveKanot.UiController.SettingsController;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -44,12 +45,34 @@ public class Race {
         return raceClass;
     }
 
+    public String normaliseRaceClass() {
+        return raceClass.substring(0, 1).equalsIgnoreCase("C")
+                ? raceClass.substring(1, 3) + " C" + raceClass.substring(3, 4)
+                : raceClass.substring(0, 3) + " K" + raceClass.substring(3, 4);
+    }
+
     public void setRaceClass(String raceClass) {
         this.raceClass = raceClass;
     }
 
     public String getType() {
         return type;
+    }
+
+    public String normaliseType(SettingsController settings) {
+        if (type.equals("FÖ"))
+            return settings.getFörsök();
+        else if (type.equals("BF"))
+            return settings.getBFinal();
+        else if (type.equals("AF"))
+            return settings.getAFinal();
+        else if (type.equals("MH"))
+            return settings.getMellanHeat();
+        else if (type.length() == 2 && type.substring(1, 1).equals("F"))
+            return type.substring(0, 1) + settings.getFinalÖvrigt();
+
+        else
+            return type;
     }
 
     public void setType(String type) {
