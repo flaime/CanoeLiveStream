@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import liveKanot.data.RaceData;
 import liveKanot.utils.FileWriterOwn;
 import liveKanot.utils.OpenUrlInBrowser;
 import liveKanot.utils.SaveController;
@@ -145,13 +146,7 @@ public class MainController {
     }
 
     @FXML
-    public void nextRaceResultAndUpdate() throws IOException {
-        nextRaceResults();
-        writeToFile();
-    }
-
-    @FXML
-    public void nextRaceResults() {
+    public void nextRaceResults() throws IOException {
         nextRace(loppNummerResultatListor);
         updateResults();
     }
@@ -163,7 +158,7 @@ public class MainController {
     }
 
     @FXML
-    public void previousRaceResults() {
+    public void previousRaceResults() throws IOException {
         previousRace(loppNummerResultatListor);
         updateResults();
     }
@@ -200,36 +195,30 @@ public class MainController {
     }
 
     @FXML
-    public void updateResults() {
+    public void updateResults() throws IOException {
         Race race = getData(loppNummerResultatListor.getText());
 
-        resultHeder.setText(race.getDistance() + " m " + race.normaliseType(settings) + " " + race.normaliseRaceClass());
+        resultHeder.setText(RaceData.getRaceInfoText(race, settings));
 
-//        fileContent.setText(RaceData.getHeaderText(race, this));//TODO need to change to corect file
-//
-//        json.setText(RaceData.racesJson(race, 15, 0));//TODO need to change to corect file
+        RaceData.getResultFiles(race, settings, 15, 0);
     }
 
     @FXML
     public void updateStartListor() {
         Race race = getData(loppNummerStartListor.getText());
 
-//        fileContent.setText(RaceData.getHeaderText(race, this)); //TODO need to change to corect file
+        startlistHeder.setText(RaceData.getRaceInfoText(race, settings));
+
+//        fileContent.setText(RaceData.getRaceInfoText(race, this)); //TODO need to change to corect file
 //
 //        json.setText(RaceData.racesJson(race, 15, 0));//TODO need to change to corect file
     }
 
-    @FXML
-    public void previousRaceAndUpdate() throws IOException {
-        previousRaceResults();
-        writeToFile();
-    }
-
-    @FXML
-    public void writeToFile() throws IOException {
+//    @FXML
+//    public void writeToFile() throws IOException {
 //        FileWriterOwn.writeFile(settings.getTitleFile() + ".txt", fileContent.getText());
 //        FileWriterOwn.writeFile(settings.getLoppFile() + ".json", json.getText());
-    }
+//    }
 
     private Stage settingsStage = new Stage();
     SettingsController settings = new SettingsController();

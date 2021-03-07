@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="465.0" prefWidth="400.0" GridPane.rowIndex="16" xmlns="http://javafx.com/javafx/11.0.1"
+<VBox prefHeight="470.0" prefWidth="400.0" GridPane.rowIndex="16" xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="liveKanot.UiController.SettingsController">
     <children>
         <AnchorPane id="AnchorPane">
@@ -24,10 +24,10 @@
                         <!--                  <Insets top="0" right="0" left="0" bottom="0"/>-->
                         <!--               </padding>-->
                         <!--               <children >-->
-                  <!--                  <Button mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
-                  <!--               </children>-->
-                  <!--            </AnchorPane>-->
-                  <GridPane alignment="center" hgap="10" vgap="10">
+                        <!--                  <Button mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
+                        <!--               </children>-->
+                        <!--            </AnchorPane>-->
+                        <GridPane alignment="center" hgap="10" vgap="10">
                      <columnConstraints>
                         <ColumnConstraints />
                         <ColumnConstraints />
@@ -48,41 +48,42 @@
                         <RowConstraints />
                         <RowConstraints />
                      </rowConstraints>
-                      <children>
-                          <TextField fx:id="lopFile" disable="true" editable="false" text="lopp"
-                                     GridPane.columnIndex="1" GridPane.rowIndex="9"/>
-                          <TextField fx:id="messageFile" disable="true" editable="false" text="medelande"
-                                     GridPane.columnIndex="1" GridPane.rowIndex="8"/>
-                          <Label text="Medelande fil" GridPane.rowIndex="8"/>
-                          <Label text="Lopp fil" GridPane.rowIndex="9"/>
-                          <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
-                          <Label text=".json" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
-                          <Label text="Heat" GridPane.rowIndex="7"/>
-                          <Label text="m " GridPane.rowIndex="6"/>
-                          <Label text="FÖ" GridPane.rowIndex="5"/>
-                          <Label text="BF" GridPane.rowIndex="4"/>
-                          <Label text="AF" GridPane.rowIndex="3"/>
-                          <Label text="MH" GridPane.rowIndex="2"/>
-                          <TextField fx:id="MH" text="Mellanheat" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                          <TextField fx:id="AF" text="A-Final" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                          <TextField fx:id="BF" text="B-Final" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                          <TextField fx:id="FÖ" text="Försök" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-                          <TextField fx:id="meter" text="m" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-                          <TextField fx:id="heat" text="Heat" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-                          <TextField fx:id="finalÖvrig" text="-Final" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                          <Label text="final övriga" GridPane.rowIndex="1"/>
-                          <CheckBox fx:id="removeåäö" mnemonicParsing="false" selected="true" text="clear å ä ö"
-                                    GridPane.columnIndex="1"/>
-                          <Label text="resultat fil" GridPane.rowIndex="10"/>
-                          <Label text=".json" GridPane.columnIndex="3" GridPane.rowIndex="10"/>
-                          <TextField fx:id="resultatFile" disable="true" editable="false" text="resultat"
-                                     GridPane.columnIndex="1" GridPane.rowIndex="10"/>
-                          <Label text="Viktigt medelande" GridPane.rowIndex="11"/>
-                          <TextField fx:id="importantMessageFile" disable="true" editable="false"
-                                     text="viktigtMedeelande" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
-                          <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="11"/>
+                            <children>
+                                <TextField fx:id="lopFile" disable="true" editable="false" text="lopp"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+                                <TextField fx:id="messageFile" disable="true" editable="false" text="medelande"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                                <Label text="Medelande fil" GridPane.rowIndex="8"/>
+                                <Label text="Lopp fil" GridPane.rowIndex="9"/>
+                                <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
+                                <Label text=".json" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
+                                <Label text="Heat" GridPane.rowIndex="7"/>
+                                <Label text="m " GridPane.rowIndex="6"/>
+                                <Label text="FÖ" GridPane.rowIndex="5"/>
+                                <Label text="BF" GridPane.rowIndex="4"/>
+                                <Label text="AF" GridPane.rowIndex="3"/>
+                                <Label text="MH" GridPane.rowIndex="2"/>
+                                <TextField fx:id="MH" text="Mellanheat" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <TextField fx:id="AF" text="A-Final" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                <TextField fx:id="BF" text="B-Final" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                <TextField fx:id="FÖ" text="Försök" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                                <TextField fx:id="meter" text="m" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                                <TextField fx:id="heat" text="Heat" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                                <TextField fx:id="finalÖvrig" text="-Final" GridPane.columnIndex="1"
+                                           GridPane.rowIndex="1"/>
+                                <Label text="final övriga" GridPane.rowIndex="1"/>
+                                <CheckBox fx:id="removeåäö" mnemonicParsing="false" selected="true" text="clear å ä ö"
+                                          GridPane.columnIndex="1"/>
+                                <Label text="resultat fil" GridPane.rowIndex="10"/>
+                                <Label text=".json" GridPane.columnIndex="3" GridPane.rowIndex="10"/>
+                                <TextField fx:id="resultatFile" disable="true" editable="false" text="resultat"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+                                <Label text="Viktigt medelande" GridPane.rowIndex="11"/>
+                                <TextField fx:id="importantMessageFile" disable="true" editable="false"
+                                           text="viktigtMedeelande" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
+                                <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="11"/>
 
-                      </children>
+                            </children>
                   </GridPane>
                </content>
             </TitledPane>

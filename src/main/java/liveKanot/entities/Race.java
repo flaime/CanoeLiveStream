@@ -4,6 +4,7 @@ import com.mashape.unirest.http.JsonNode;
 import liveKanot.UiController.SettingsController;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Race {
     private int typeNumber;
     private String distance;
     private String raceNumber;
+    private LocalDateTime dateTime;
 
     public Race(List<Bana> banor, String raceClass, String type, int typeNumber, String distance, String raceNumber) {
         this.banor = banor;
@@ -30,6 +32,7 @@ public class Race {
         type = races.getObject().getString("type");
         typeNumber = races.getObject().getInt("typeNumber");
         distance = races.getObject().getString("distance");
+        dateTime = LocalDateTime.parse(races.getObject().getString("dateTime"));
         this.raceNumber = raceNumber;
     }
 
@@ -101,6 +104,14 @@ public class Race {
 
     public void setRaceNumber(String raceNumber) {
         this.raceNumber = raceNumber;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     private ArrayList<Bana> getBanor(JsonNode races, boolean removeåäö) {
