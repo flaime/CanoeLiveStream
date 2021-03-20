@@ -22,7 +22,7 @@ public class MainApp extends Application {
         MainController controller = (MainController)loader.getController();
         controller.setStageAndSetupListeners(primaryStage);
         primaryStage.setTitle("Live stream");
-        primaryStage.setScene(new Scene(root, 605, 400));
+        primaryStage.setScene(new Scene(root, 650, 400));
         primaryStage.show();
     }
 
