@@ -137,12 +137,12 @@ public class MainController {
 
     @FXML
     public void saveImportantMessage() throws IOException {
-        FileWriterOwn.writeFile(settings.getImportantMessageFile() + ".txt", importantMessage.getText());
+        FileWriterOwn.writeFile(settings.getImportantMessageFile() + ".txt", importantMessage.getText(), settings.getFilePath());
     }
 
     @FXML
     public void saveMessage() throws IOException {
-        FileWriterOwn.writeFile(settings.getMessageFile() + ".txt", message.getText());
+        FileWriterOwn.writeFile(settings.getMessageFile() + ".txt", message.getText(), settings.getFilePath());
     }
 
     @FXML

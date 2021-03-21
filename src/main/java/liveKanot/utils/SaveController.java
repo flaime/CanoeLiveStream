@@ -66,6 +66,6 @@ public class SaveController {
                 save[0] += (((CheckBox) it).isSelected() ? "true" : "false") + "\n";
         });
 
-        FileWriterOwn.writeFile("settings.anna", save[0]);
+        FileWriterOwn.writeFile("settings.anna", save[0], "");
     }
 }

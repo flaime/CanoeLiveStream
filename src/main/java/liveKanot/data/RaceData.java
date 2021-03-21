@@ -2,25 +2,14 @@ package liveKanot.data;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 import liveKanot.UiController.SettingsController;
-import liveKanot.entities.Bana;
 import liveKanot.entities.Race;
 import liveKanot.entities.ResultatFileEntity;
-import liveKanot.utils.CustomLocalDateTimeSerializer;
 import liveKanot.utils.FileWriterOwn;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 public class RaceData {
@@ -43,8 +32,8 @@ public class RaceData {
                                 limit,
                                 offset
                         )
-                )
-        );
+                ),
+                settings.getFilePath());
     }
 
     private static List<ResultatFileEntity> getResultatFileEntitiesSorted(Race race, SettingsController settings) {

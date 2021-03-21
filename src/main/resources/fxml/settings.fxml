@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="470.0" prefWidth="400.0" GridPane.rowIndex="16" xmlns="http://javafx.com/javafx/11.0.1"
+<VBox prefHeight="510.0" prefWidth="400.0" GridPane.rowIndex="16" xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="liveKanot.UiController.SettingsController">
     <children>
         <AnchorPane id="AnchorPane">
@@ -82,6 +82,8 @@
                                 <TextField fx:id="importantMessageFile" disable="true" editable="false"
                                            text="viktigtMedeelande" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
                                 <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="11"/>
+                                <Label text="Sökväg" GridPane.rowIndex="12"/>
+                                <TextField fx:id="filePath" text="" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
 
                             </children>
                   </GridPane>

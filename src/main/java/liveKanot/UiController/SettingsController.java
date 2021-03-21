@@ -44,6 +44,8 @@ public class SettingsController {
     private TextField resultatFile;
     @FXML
     private TextField importantMessageFile;
+    @FXML
+    private TextField filePath;
 
     //-----
 
@@ -68,7 +70,8 @@ public class SettingsController {
                 meter,
                 heat,
                 resultatFile,
-                importantMessageFile
+                importantMessageFile,
+                filePath
         );
     }
 
@@ -134,5 +137,13 @@ public class SettingsController {
 
     public void setUrl(String url) {
         this.url.setText(url);
+    }
+
+    public String getFilePath() {
+        return filePath.getText();
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath.setText(filePath);
     }
 }
