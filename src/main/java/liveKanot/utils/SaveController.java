@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SaveController {
 
-    private List<Control> toSave;
+    private final List<Control> toSave;
     public SaveController(List<Control> toSave) {
         this.toSave = toSave;
         toSave.forEach(it -> {
@@ -32,7 +32,7 @@ public class SaveController {
     }
 
     private void setSettings(String config) {
-        String lines[] = config.split("\\r?\\n");
+        String[] lines = config.split("\\r?\\n");
 
         if(lines.length -1 == toSave.size())
         for (int i = 0; i < toSave.size(); i++) {
@@ -40,7 +40,7 @@ public class SaveController {
             if (control instanceof TextField)
                 ((TextField) control).setText(lines[i + 1]);
             else if (control instanceof CheckBox)
-                ((CheckBox) control).setSelected(lines[7].equalsIgnoreCase("false") ? false : true);
+                ((CheckBox) control).setSelected(!lines[7].equalsIgnoreCase("false"));
         }
         else
             System.out.println("File is wrong could not load settings");
