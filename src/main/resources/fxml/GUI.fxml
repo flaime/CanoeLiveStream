@@ -67,7 +67,7 @@
                   <TextArea fx:id="startlistHeder" editable="false" layoutX="26.0" layoutY="79.0" minHeight="-Infinity"
                             prefHeight="25.0" prefWidth="245.0"/>
                   <Button layoutX="225.0" layoutY="36.0" mnemonicParsing="false" onAction="#updateStartListor"
-                          text="Updatera"/>
+                          text="Uppdatera"/>
               </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="296.0">
@@ -86,7 +86,7 @@
                   <TextArea fx:id="resultHeder" editable="false" layoutX="26.0" layoutY="79.0" minHeight="-Infinity"
                             prefHeight="25.0" prefWidth="245.0"/>
                   <Button layoutX="225.0" layoutY="36.0" mnemonicParsing="false" onAction="#updateResults"
-                          text="Updatera"/>
+                          text="Uppdatera"/>
               </children>
             </AnchorPane>
         </items>
