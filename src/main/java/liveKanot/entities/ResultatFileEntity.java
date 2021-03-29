@@ -16,8 +16,9 @@ public class ResultatFileEntity {
     String bana;
     String besättning; // (namn1 – namn4)
     String klubb; // Programnamn
+    String infoText; // beskrvning distans klartexten
 
-    public ResultatFileEntity(String lopp, LocalDateTime startTid, String beskrivning, String distans, String klartext, String bana, String besättning, String klubb) {
+    public ResultatFileEntity(String lopp, LocalDateTime startTid, String beskrivning, String distans, String klartext, String bana, String besättning, String klubb, String infoText) {
         this.lopp = lopp;
         this.startTid = startTid;
         this.beskrivning = beskrivning;
@@ -26,6 +27,7 @@ public class ResultatFileEntity {
         this.bana = bana;
         this.besättning = besättning;
         this.klubb = klubb;
+        this.infoText = infoText;
     }
 
     public String getLopp() {
@@ -90,5 +92,13 @@ public class ResultatFileEntity {
 
     public void setKlubb(String klubb) {
         this.klubb = klubb;
+    }
+
+    public String getInfoText() {
+        return infoText;
+    }
+
+    public void setInfoText(String infoText) {
+        this.infoText = infoText;
     }
 }

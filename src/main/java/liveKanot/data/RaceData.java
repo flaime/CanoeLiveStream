@@ -66,7 +66,8 @@ public class RaceData {
                         race.normaliseType(settings),
                         bana.getBana(),
                         bana.getNamn(),
-                        bana.getClubb())
+                        bana.getClubb(),
+                        (race.normaliseRaceClass() + " " + race.getDistance() + "m " + race.normaliseType(settings) + " " + race.getTypeNumber()))
         ).collect(Collectors.toList());
     }
 }
