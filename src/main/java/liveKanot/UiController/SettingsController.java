@@ -46,6 +46,10 @@ public class SettingsController {
     private TextField importantMessageFile;
     @FXML
     private TextField filePath;
+    @FXML
+    private TextField programFile;
+    @FXML
+    private TextField programFileUpdateTime;
 
     //-----
 
@@ -71,7 +75,9 @@ public class SettingsController {
                 heat,
                 resultatFile,
                 importantMessageFile,
-                filePath
+                filePath,
+                programFile,
+                programFileUpdateTime
         );
     }
 
@@ -145,5 +151,26 @@ public class SettingsController {
 
     public void setFilePath(String filePath) {
         this.filePath.setText(filePath);
+    }
+
+    public String getProgramFile() {
+        return programFile.getText();
+    }
+
+    public void setProgramFile(String programFile) {
+        this.programFile.setText(programFile);
+    }
+
+    public int getProgramFileUpdateTime() {
+        try {
+            return Integer.valueOf(programFileUpdateTime.getText());
+        } catch (Exception e) {
+            programFileUpdateTime.setText("40");
+            return 40;
+        }
+    }
+
+    public void setProgramFileUpdateTime(int programFileUpdateTime) {
+        this.programFileUpdateTime.setText(programFileUpdateTime + "");
     }
 }

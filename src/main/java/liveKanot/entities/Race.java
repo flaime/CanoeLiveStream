@@ -26,13 +26,13 @@ public class Race {
         this.raceNumber = raceNumber;
     }
 
-    public Race(JsonNode races, String raceNumber, boolean removeÅÄÖ) {
+    public Race(JSONObject races, String raceNumber, boolean removeÅÄÖ) {
         banor = getBanor(races, removeÅÄÖ);
-        raceClass = races.getObject().getString("raceClass");
-        type = races.getObject().getString("type");
-        typeNumber = races.getObject().getInt("typeNumber");
-        distance = races.getObject().getString("distance");
-        dateTime = LocalDateTime.parse(races.getObject().getString("dateTime"));
+        raceClass = races.getString("raceClass");
+        type = races.getString("type");
+        typeNumber = races.getInt("typeNumber");
+        distance = races.getString("distance");
+        dateTime = LocalDateTime.parse(races.getString("dateTime"));
         this.raceNumber = raceNumber;
     }
 
@@ -114,12 +114,11 @@ public class Race {
         this.dateTime = dateTime;
     }
 
-    private ArrayList<Bana> getBanor(JsonNode races, boolean removeåäö) {
+    private ArrayList<Bana> getBanor(JSONObject races, boolean removeåäö) {
         ArrayList<Bana> banor = new ArrayList<>();
-        final int racelenght = races.getObject().getJSONArray("tracks").length();
+        final int racelenght = races.getJSONArray("tracks").length();
         for (int i = 0; i < racelenght; i++) {
-            final JSONObject track = races.getObject().getJSONArray("tracks").getJSONObject(i);
-            System.out.println(track);
+            final JSONObject track = races.getJSONArray("tracks").getJSONObject(i);
             int participantSize = track.getJSONArray("persons").length();
             String forname = "";
             for (int y = 0; y < participantSize; y++) {

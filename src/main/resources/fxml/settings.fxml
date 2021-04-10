@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="510.0" prefWidth="400.0" GridPane.rowIndex="16" xmlns="http://javafx.com/javafx/11.0.1"
+<VBox prefHeight="610.0" prefWidth="450.0" GridPane.rowIndex="16" xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="liveKanot.UiController.SettingsController">
     <children>
         <AnchorPane id="AnchorPane">
@@ -82,8 +82,22 @@
                                 <TextField fx:id="importantMessageFile" disable="true" editable="false"
                                            text="viktigtMedeelande" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
                                 <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="11"/>
-                                <Label text="Sökväg" GridPane.rowIndex="12"/>
-                                <TextField fx:id="filePath" text="" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+
+                                <Label text="Program fil" GridPane.rowIndex="12"/>
+                                <TextField fx:id="programFile" disable="true" editable="false"
+                                           text="program" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+                                <Label text=".json" GridPane.columnIndex="3" GridPane.rowIndex="12"/>
+
+
+                                <Label text="Sökväg" GridPane.rowIndex="13"/>
+                                <TextField fx:id="filePath" text="" GridPane.columnIndex="1" GridPane.rowIndex="13"/>
+
+                                <Label text="Hur ofta programfil uppdateras" GridPane.rowIndex="14"/>
+                                <TextField fx:id="programFileUpdateTime" text="40" GridPane.columnIndex="1"
+                                           GridPane.rowIndex="14"/>
+                                <Label text="sec" GridPane.columnIndex="3" GridPane.rowIndex="14"/>
+                                <Label text="Programfilens uppdaterings tid tar bara efekt vid omstart"
+                                       GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="15"/>
 
                             </children>
                   </GridPane>

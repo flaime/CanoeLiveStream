@@ -22,7 +22,7 @@ public class RaceData {
         return "Heat " + race.getRaceNumber() + " " + raceClass + " " + race.getDistance() + "m " + type + " " + race.getTypeNumber();
     }
 
-    public static void getResultFiles(Race race, SettingsController settings, int limit, int offset) throws IOException {
+    public static void createAndWriteResultFiles(Race race, SettingsController settings, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = getResultatFileEntitiesSorted(race, settings);
 
         FileWriterOwn.writeFile(settings.getResultatFile() + ".json",
@@ -40,7 +40,7 @@ public class RaceData {
         Comparator<ResultatFileEntity> compareByBana = Comparator
                 .comparing(ResultatFileEntity::getBana);
 //                .thenComparing(ResultatFileEntity::getLastName);
-        List<ResultatFileEntity> resultFiles = RaceData.getResultFiles(race, settings).stream().sorted(compareByBana).collect(Collectors.toList());
+        List<ResultatFileEntity> resultFiles = RaceData.getResultatFileEntityForRace(race, settings).stream().sorted(compareByBana).collect(Collectors.toList());
         return resultFiles;
     }
 
@@ -56,7 +56,7 @@ public class RaceData {
         return objectMapper.writeValueAsString(resultatFileEntities);
     }
 
-    public static List<ResultatFileEntity> getResultFiles(Race race, SettingsController settings) {
+    public static List<ResultatFileEntity> getResultatFileEntityForRace(Race race, SettingsController settings) {
         return race.getBanor().stream().map(bana ->
                 new ResultatFileEntity(
                         race.getRaceNumber(),

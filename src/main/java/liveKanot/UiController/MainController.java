@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import liveKanot.data.ProgramData;
 import liveKanot.data.RaceData;
 import liveKanot.utils.FileWriterOwn;
 import liveKanot.utils.OpenUrlInBrowser;
@@ -20,9 +21,7 @@ import liveKanot.data.DataFetcher;
 import liveKanot.entities.Race;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class MainController {
 
@@ -68,6 +67,26 @@ public class MainController {
             promtForUrlAndCompetitionname();
             saveController.safeSave();
         }
+        createAndUpdateProgramFile();
+    }
+
+    public void createAndUpdateProgramFile() {
+        TimerTask task = new TimerTask() {
+            public void run() {
+                try {
+                    System.out.println("uppdating program file");
+                    ProgramData.createAndWriteProgramFile(new DataFetcher().getRaces(settings.getCompetition(), settings.getUrl(), settings.removeåäö()), settings);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnirestException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(task, 5000L, settings.getProgramFileUpdateTime() * 1000L);
     }
 
     public void promtForUrlAndCompetitionname() {
@@ -77,7 +96,7 @@ public class MainController {
         comp.setSpacing(10);
         comp.setPadding(new Insets(10, 10, 10, 10));
 
-        Label info = new Label("En av dessa är inte satta, se till att fylla i båda.");
+        Label info = new Label("Minst en av dessa är inte satta, se till att fylla i båda.");
         comp.getChildren().add(info);
 
         HBox competition = new HBox();
@@ -200,7 +219,7 @@ public class MainController {
 
         resultHeder.setText(RaceData.getRaceInfoText(race, settings));
 
-        RaceData.getResultFiles(race, settings, 15, 0);
+        RaceData.createAndWriteResultFiles(race, settings, 15, 0);
     }
 
     @FXML
