@@ -14,9 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import liveKanot.data.ProgramData;
 import liveKanot.data.RaceData;
-import liveKanot.utils.FileWriterOwn;
-import liveKanot.utils.OpenUrlInBrowser;
-import liveKanot.utils.SaveController;
+import liveKanot.utils.*;
 import liveKanot.data.DataFetcher;
 import liveKanot.entities.Race;
 
@@ -59,6 +57,9 @@ public class MainController {
                 message
         ));
 
+        loppNummerResultatListor.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
+        loppNummerStartListor.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
+
         toSave.addAll(createSettingsDialog());
 
         saveController = new SaveController(toSave);
@@ -68,6 +69,8 @@ public class MainController {
             saveController.safeSave();
         }
         createAndUpdateProgramFile();
+
+        new StreamDeckApi().start(settings);
     }
 
     public void createAndUpdateProgramFile() {
@@ -82,7 +85,6 @@ public class MainController {
                     e.printStackTrace();
                 }
             }
-
         };
 
         Timer timer = new Timer();

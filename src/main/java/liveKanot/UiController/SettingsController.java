@@ -4,9 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import liveKanot.utils.ControllerUtils;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 public class SettingsController {
 
@@ -50,13 +54,20 @@ public class SettingsController {
     private TextField programFile;
     @FXML
     private TextField programFileUpdateTime;
-
+    @FXML
+    public TextField ApiPort;
     //-----
 
     private MainController mainController;
 
     public void setMainUi(MainController controller) {
         mainController = controller;
+    }
+
+    @FXML
+    protected void initialize() {
+        ApiPort.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
+        programFileUpdateTime.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
     }
 
     public List<Control> toSave() {
@@ -77,7 +88,8 @@ public class SettingsController {
                 importantMessageFile,
                 filePath,
                 programFile,
-                programFileUpdateTime
+                programFileUpdateTime,
+                ApiPort
         );
     }
 
@@ -173,4 +185,19 @@ public class SettingsController {
     public void setProgramFileUpdateTime(int programFileUpdateTime) {
         this.programFileUpdateTime.setText(programFileUpdateTime + "");
     }
+
+    public int getApiPort() {
+        try {
+            return Integer.valueOf(ApiPort.getText());
+        } catch (Exception e) {
+            programFileUpdateTime.setText("1616");
+            return 1616;
+        }
+    }
+
+    public void setApiPort(int apiPort) {
+        this.ApiPort.setText(apiPort + "");
+    }
+
+
 }
