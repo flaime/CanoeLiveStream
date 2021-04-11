@@ -82,16 +82,17 @@ public class MainController {
         //Below is a bad use of get but to mor easy of use int the browser so this will make an update
         get("/resultatListor/update/:number", (req, res) -> {
             loppNummerResultatListor.setText(req.params("number"));
+            updateResults();
             return req.params("number");
         });
 
         get("/resultatListor/next", (req, res) -> {
-            nextRace(loppNummerResultatListor);
+            nextRaceResults();
             return loppNummerResultatListor.getText();
         });
 
         get("/resultatListor/previous", (req, res) -> {
-            previousRace(loppNummerResultatListor);
+            previousRaceResults();
             return loppNummerResultatListor.getText();
         });
 
@@ -102,19 +103,20 @@ public class MainController {
         //Below is a bad use of get but to mor easy of use int the browser so this will make an update
         get("/startListor/update/:number", (req, res) -> {
             loppNummerStartListor.setText(req.params("number"));
+            updateStartListor();
             return req.params("number");
         });
 
         get("/startListor/next", (req, res) -> {
+            nextRaceStartList();
             nextRace(loppNummerStartListor);
             return loppNummerStartListor.getText();
         });
 
         get("/startListor/previous", (req, res) -> {
-            previousRace(loppNummerStartListor);
+            previousRaceStartList();
             return loppNummerStartListor.getText();
         });
-
     }
 
     public void createAndUpdateProgramFile() {
