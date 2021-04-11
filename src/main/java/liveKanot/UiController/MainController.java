@@ -21,6 +21,9 @@ import liveKanot.entities.Race;
 import java.io.IOException;
 import java.util.*;
 
+import static spark.Spark.*;
+import static spark.Spark.get;
+
 public class MainController {
 
     @FXML
@@ -70,7 +73,48 @@ public class MainController {
         }
         createAndUpdateProgramFile();
 
-        new StreamDeckApi().start(settings);
+        start(settings);
+    }
+
+    public void start(SettingsController settings) {
+        port(settings.getApiPort());
+        get("/resultatListor", (req, res) -> loppNummerResultatListor.getText());
+        //Below is a bad use of get but to mor easy of use int the browser so this will make an update
+        get("/resultatListor/update/:number", (req, res) -> {
+            loppNummerResultatListor.setText(req.params("number"));
+            return req.params("number");
+        });
+
+        get("/resultatListor/next", (req, res) -> {
+            nextRace(loppNummerResultatListor);
+            return loppNummerResultatListor.getText();
+        });
+
+        get("/resultatListor/previous", (req, res) -> {
+            previousRace(loppNummerResultatListor);
+            return loppNummerResultatListor.getText();
+        });
+
+
+        //--------------------------------------//
+
+        get("/startListor", (req, res) -> loppNummerStartListor.getText());
+        //Below is a bad use of get but to mor easy of use int the browser so this will make an update
+        get("/startListor/update/:number", (req, res) -> {
+            loppNummerStartListor.setText(req.params("number"));
+            return req.params("number");
+        });
+
+        get("/startListor/next", (req, res) -> {
+            nextRace(loppNummerStartListor);
+            return loppNummerStartListor.getText();
+        });
+
+        get("/startListor/previous", (req, res) -> {
+            previousRace(loppNummerStartListor);
+            return loppNummerStartListor.getText();
+        });
+
     }
 
     public void createAndUpdateProgramFile() {
