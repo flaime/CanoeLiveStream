@@ -38,8 +38,8 @@ public class RaceData {
 
     private static List<ResultatFileEntity> getResultatFileEntitiesSorted(Race race, SettingsController settings) {
         Comparator<ResultatFileEntity> compareByBana = Comparator
-                .comparing(ResultatFileEntity::getBana);
-//                .thenComparing(ResultatFileEntity::getLastName);
+                .comparing(ResultatFileEntity::getLoppTid)
+                .thenComparing(ResultatFileEntity::getBana);
         List<ResultatFileEntity> resultFiles = RaceData.getResultatFileEntityForRace(race, settings).stream().sorted(compareByBana).collect(Collectors.toList());
         return resultFiles;
     }
@@ -67,7 +67,10 @@ public class RaceData {
                         bana.getBana(),
                         bana.getNamn(),
                         bana.getClubb(),
-                        (race.normaliseRaceClass() + " " + race.getDistance() + "m " + race.normaliseType(settings) + " " + race.getTypeNumber()))
+                        (race.normaliseRaceClass() + " " + race.getDistance() + "m " + race.normaliseType(settings) + " " + race.getTypeNumber()),
+                        bana.getTid(),
+                        bana.getPlacering()
+                )
         ).collect(Collectors.toList());
     }
 }
