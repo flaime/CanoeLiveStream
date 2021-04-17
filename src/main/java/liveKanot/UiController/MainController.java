@@ -260,7 +260,7 @@ public class MainController {
     }
 
     @FXML
-    public void nextRaceStartList() {
+    public void nextRaceStartList() throws IOException {
         nextRace(loppNummerStartListor);
         updateStartListor();
     }
@@ -272,7 +272,7 @@ public class MainController {
     }
 
     @FXML
-    public void previousRaceStartList() {
+    public void previousRaceStartList() throws IOException {
         previousRace(loppNummerStartListor);
         updateStartListor();
     }
@@ -308,25 +308,17 @@ public class MainController {
 
         resultHeder.setText(RaceData.getRaceInfoText(race, settings));
 
-        RaceData.createAndWriteResultFiles(race, settings, 15, 0);
+        RaceData.createAndWriteResultFiles(race, settings, settings.getResultatFile(), 15, 0);
     }
 
     @FXML
-    public void updateStartListor() {
+    public void updateStartListor() throws IOException {
         Race race = getData(loppNummerStartListor.getText());
 
         startlistHeder.setText(RaceData.getRaceInfoText(race, settings));
 
-//        fileContent.setText(RaceData.getRaceInfoText(race, this)); //TODO need to change to corect file
-//
-//        json.setText(RaceData.racesJson(race, 15, 0));//TODO need to change to corect file
+        RaceData.createAndWritProgramFiles(race, settings, settings.getStartlistaFile(), 15, 0);
     }
-
-//    @FXML
-//    public void writeToFile() throws IOException {
-//        FileWriterOwn.writeFile(settings.getTitleFile() + ".txt", fileContent.getText());
-//        FileWriterOwn.writeFile(settings.getLoppFile() + ".json", json.getText());
-//    }
 
     private Stage settingsStage = new Stage();
     SettingsController settings = new SettingsController();

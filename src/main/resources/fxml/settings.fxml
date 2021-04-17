@@ -49,12 +49,12 @@
                         <RowConstraints />
                      </rowConstraints>
                             <children>
-                                <TextField fx:id="lopFile" disable="true" editable="false" text="lopp"
+                                <TextField fx:id="startlistaFile" disable="true" editable="false" text="startlist"
                                            GridPane.columnIndex="1" GridPane.rowIndex="9"/>
                                 <TextField fx:id="messageFile" disable="true" editable="false" text="meddelande"
                                            GridPane.columnIndex="1" GridPane.rowIndex="8"/>
                                 <Label text="Meddelande fil" GridPane.rowIndex="8"/>
-                                <Label text="Lopp fil" GridPane.rowIndex="9"/>
+                                <Label text="Startlist fil" GridPane.rowIndex="9"/>
                                 <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
                                 <Label text=".json" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
                                 <Label text="Heat" GridPane.rowIndex="7"/>

@@ -22,10 +22,18 @@ public class RaceData {
         return "Heat " + race.getRaceNumber() + " " + raceClass + " " + race.getDistance() + "m " + type + " " + race.getTypeNumber();
     }
 
-    public static void createAndWriteResultFiles(Race race, SettingsController settings, int limit, int offset) throws IOException {
-        List<ResultatFileEntity> resultFiles = getResultatFileEntitiesSorted(race, settings);
+    public static void createAndWritProgramFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
+        List<ResultatFileEntity> resultFiles = sortedForProgram(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
+        createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
+    }
 
-        FileWriterOwn.writeFile(settings.getResultatFile() + ".json",
+    public static void createAndWriteResultFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
+        List<ResultatFileEntity> resultFiles = sortedForResult(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
+        createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
+    }
+
+    public static void createAndWriteFile(Race race, SettingsController settings, String fileName, List<ResultatFileEntity> resultFiles, int limit, int offset) throws IOException {
+        FileWriterOwn.writeFile(fileName + ".json",
                 RaceData.getResultFilesJson(
                         RaceData.offsetAndLimit(
                                 resultFiles,
@@ -36,11 +44,18 @@ public class RaceData {
                 settings.getFilePath());
     }
 
-    private static List<ResultatFileEntity> getResultatFileEntitiesSorted(Race race, SettingsController settings) {
+    private static List<ResultatFileEntity> sortedForResult(Race race, List<ResultatFileEntity> resultatAndProgramFileEntityForRace, SettingsController settings) {
         Comparator<ResultatFileEntity> compareByBana = Comparator
                 .comparing(ResultatFileEntity::getLoppTid)
                 .thenComparing(ResultatFileEntity::getBana);
-        List<ResultatFileEntity> resultFiles = RaceData.getResultatFileEntityForRace(race, settings).stream().sorted(compareByBana).collect(Collectors.toList());
+        List<ResultatFileEntity> resultFiles = resultatAndProgramFileEntityForRace.stream().sorted(compareByBana).collect(Collectors.toList());
+        return resultFiles;
+    }
+
+    private static List<ResultatFileEntity> sortedForProgram(Race race, List<ResultatFileEntity> resultatAndProgramFileEntityForRace, SettingsController settings) {
+        Comparator<ResultatFileEntity> compareByBana = Comparator
+                .comparing(ResultatFileEntity::getBana);
+        List<ResultatFileEntity> resultFiles = resultatAndProgramFileEntityForRace.stream().sorted(compareByBana).collect(Collectors.toList());
         return resultFiles;
     }
 

@@ -4,13 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import liveKanot.utils.ControllerUtils;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.UnaryOperator;
 
 public class SettingsController {
 
@@ -24,7 +21,7 @@ public class SettingsController {
     private TextField messageFile;
 
     @FXML
-    private TextField lopFile;
+    private TextField startlistaFile;
 
     @FXML
     private CheckBox removeåäö;
@@ -75,7 +72,7 @@ public class SettingsController {
                 url,
                 competition,
                 messageFile,
-                lopFile,
+                startlistaFile,
                 removeåäö,
                 MH,
                 AF,
@@ -129,8 +126,8 @@ public class SettingsController {
         return messageFile.getText();
     }
 
-    public String getLoppFile() {
-        return lopFile.getText();
+    public String getStartlistaFile() {
+        return startlistaFile.getText();
     }
 
     public String getResultatFile() {
