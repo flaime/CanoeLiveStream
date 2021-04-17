@@ -80,7 +80,7 @@
                                            GridPane.columnIndex="1" GridPane.rowIndex="10"/>
                                 <Label text="Viktigt meddelande" GridPane.rowIndex="11"/>
                                 <TextField fx:id="importantMessageFile" disable="true" editable="false"
-                                           text="viktigtMedeelande" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
+                                           text="viktigtMeddelande" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
                                 <Label text=".txt" GridPane.columnIndex="3" GridPane.rowIndex="11"/>
 
                                 <Label text="Program fil" GridPane.rowIndex="12"/>
