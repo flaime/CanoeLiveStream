@@ -44,6 +44,9 @@ public class MainController {
     @FXML
     private TextField message;
 
+    @FXML
+    private ToggleButton autoadvance;
+
     SaveController saveController = null;
     private Stage stage;
 
@@ -73,10 +76,48 @@ public class MainController {
         }
         createAndUpdateProgramFile();
 
-        start(settings);
+        startAPI(settings);
+        startAutoAdvance();
+
+
     }
 
-    public void start(SettingsController settings) {
+    public static boolean runAutoadvanced = false;
+
+    private void startAutoAdvance() {
+        MainController mainController = this;
+        TimerTask task = new TimerTask() {
+            public void run() {
+                try {
+                    if (runAutoadvanced) {
+                        int presentResultNumber = Integer.valueOf(loppNummerResultatListor.getText());
+                        int nextRace = ControllerUtils.findNextRace(presentResultNumber, mainController);
+
+                        loppNummerResultatListor.setText(nextRace + "");
+                        updateResults();
+                    }
+                } catch (NumberFormatException | IOException e) {
+                    System.out.println("Could not load current race number for autoadvance");
+                }
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(task, 5000L, settings.getProgramFileUpdateTime() * 1000L);
+
+        autoadvance.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            if (newValue) {
+                System.out.println("Start");
+                runAutoadvanced = true;
+            } else {
+                runAutoadvanced = false;
+                System.out.println("stop");
+            }
+        }));
+
+    }
+
+    public void startAPI(SettingsController settings) {
         port(settings.getApiPort());
         get("/resultatListor", (req, res) -> loppNummerResultatListor.getText());
         //Below is a bad use of get but to mor easy of use int the browser so this will make an update

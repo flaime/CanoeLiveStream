@@ -75,7 +75,8 @@
                   <Label layoutX="14.0" layoutY="6.0" text="Resultat"/>
                   <ToggleButton layoutX="106.0" layoutY="118.0" mnemonicParsing="false" text="Autoadvance"
                                 AnchorPane.bottomAnchor="14.666666666666657" AnchorPane.leftAnchor="106.0"
-                                AnchorPane.rightAnchor="104.66666666666669" AnchorPane.topAnchor="118.0"/>
+                                AnchorPane.rightAnchor="104.66666666666669" AnchorPane.topAnchor="118.0"
+                                fx:id="autoadvance"/>
                   <Label layoutX="65.0" layoutY="20.0" text="Heat #"/>
                   <TextField fx:id="loppNummerResultatListor" alignment="CENTER" layoutX="65.0" layoutY="36.0"
                              prefHeight="25.0" prefWidth="57.0" text="1"/>
