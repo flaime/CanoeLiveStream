@@ -23,7 +23,7 @@ public class ProgramData {
 
     public static ProgramFileEntity getProgramObject(List<Race> races, SettingsController settings) {
         ProgramFileEntity programFileEntity = new ProgramFileEntity("", "", "", "", "");
-        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mma");
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
 
         races.stream().forEach(it -> {
             programFileEntity.setHeat(programFileEntity.getHeat() + (programFileEntity.getHeat().equals("") ? "" : "\n") + it.getRaceNumber());

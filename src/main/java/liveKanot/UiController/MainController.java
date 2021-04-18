@@ -78,8 +78,6 @@ public class MainController {
 
         startAPI(settings);
         startAutoAdvance();
-
-
     }
 
     public static boolean runAutoadvanced = false;
