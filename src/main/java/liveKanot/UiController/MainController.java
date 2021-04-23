@@ -1,6 +1,8 @@
 package liveKanot.UiController;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ import liveKanot.entities.Race;
 import java.io.IOException;
 import java.util.*;
 
+import static javafx.stage.WindowEvent.*;
 import static spark.Spark.*;
 import static spark.Spark.get;
 
@@ -51,7 +54,15 @@ public class MainController {
     private Stage stage;
 
     public void setStageAndSetupListeners(Stage stage) {
-        stage = stage;
+        this.stage = stage;
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                saveController.safeSave();
+                Platform.exit();
+                System.exit(0);
+            }
+        });
     }
 
     @FXML
