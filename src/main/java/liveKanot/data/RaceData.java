@@ -26,13 +26,13 @@ public class RaceData {
 
     public static void createAndWritProgramFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = sortedForProgram(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
-        addExtra(resultFiles, 10);
+        addExtra(resultFiles, 20);
         createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
     }
 
     public static void createAndWriteResultFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = sortedForResult(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
-        addExtra(resultFiles, 10);
+        addExtra(resultFiles, 20);
 
         createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
     }
