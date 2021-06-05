@@ -8,9 +8,11 @@ import liveKanot.entities.ResultatFileEntity;
 import liveKanot.utils.FileWriterOwn;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class RaceData {
 
@@ -24,12 +26,32 @@ public class RaceData {
 
     public static void createAndWritProgramFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = sortedForProgram(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
+        addExtra(resultFiles, 10);
         createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
     }
 
     public static void createAndWriteResultFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = sortedForResult(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
+        addExtra(resultFiles, 10);
+
         createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
+    }
+
+    private static void addExtra(List<ResultatFileEntity> resultFiles, int numberToAdd) {
+        IntStream.range(0, numberToAdd).forEach((it) -> {
+            ResultatFileEntity resultatFileEntity = new ResultatFileEntity("",
+                    resultFiles.isEmpty() ? LocalDateTime.now() : resultFiles.get(0).getStartTid(),
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "");
+            resultFiles.add(resultatFileEntity);
+        });
     }
 
     public static void createAndWriteFile(Race race, SettingsController settings, String fileName, List<ResultatFileEntity> resultFiles, int limit, int offset) throws IOException {
