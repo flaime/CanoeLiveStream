@@ -326,6 +326,7 @@ public class MainController {
 
         startlistHeder.setText(RaceData.getRaceInfoText(race, settings));
 
+        TimeStampUtils.addEvent(race.getRaceNumber(), settings);
         RaceData.createAndWritProgramFiles(race, settings, settings.getStartlistaFile(), 15, 0);
     }
 

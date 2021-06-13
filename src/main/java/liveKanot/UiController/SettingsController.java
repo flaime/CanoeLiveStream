@@ -53,6 +53,8 @@ public class SettingsController {
     private TextField programFileUpdateTime;
     @FXML
     public TextField ApiPort;
+    @FXML
+    public TextField timestampFil;
     //-----
 
     private MainController mainController;
@@ -86,7 +88,8 @@ public class SettingsController {
                 filePath,
                 programFile,
                 programFileUpdateTime,
-                ApiPort
+                ApiPort,
+                timestampFil
         );
     }
 
@@ -164,6 +167,10 @@ public class SettingsController {
 
     public String getProgramFile() {
         return programFile.getText();
+    }
+
+    public String getTimestampFil() {
+        return timestampFil.getText();
     }
 
     public void setProgramFile(String programFile) {

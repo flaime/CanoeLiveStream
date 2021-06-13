@@ -3,6 +3,7 @@ package liveKanot.utils;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -10,13 +11,18 @@ public class FileWriterOwn {
 
     public static void writeFile(String fileName, String fileContent, String filePath)
             throws IOException {
+        Path directory = getDirectoryFixed(filePath);
+
+        writeFIle(fileContent, directory.resolve(fileName));
+    }
+
+    private static Path getDirectoryFixed(String filePath) {
         String filePathFixed = filePath.trim();
         if (filePathFixed.length() > 0 && !filePathFixed.endsWith("/"))
             filePathFixed = filePathFixed + "/";
 
         Path directory = createDirectory(filePathFixed);
-
-        writeFIle(fileContent, directory.resolve(fileName));
+        return directory;
     }
 
 
@@ -26,6 +32,20 @@ public class FileWriterOwn {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static synchronized void appendRow(String content, String fileName, String filePath) throws IOException {
+        Path file = getDirectoryFixed(filePath).resolve(fileName);
+
+        String fileContent = "";
+        try {
+            fileContent += FileReaderOwn.readFile(file.toAbsolutePath().toString());
+        } catch (NoSuchFileException ignored) {
+        }
+
+        fileContent += content;
+
+        writeFIle(fileContent, file);
     }
 
 
