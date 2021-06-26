@@ -112,7 +112,7 @@ public class MainController {
         };
 
         Timer timer = new Timer();
-        timer.schedule(task, 5000L, settings.getProgramFileUpdateTime() * 1000L);
+        timer.schedule(task, 5000L, settings.getaAutoadvanceTime() * 1000L);
 
         autoadvance.selectedProperty().addListener(((observable, oldValue, newValue) -> {
             if (newValue) {

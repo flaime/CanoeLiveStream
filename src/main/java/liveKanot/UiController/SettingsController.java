@@ -55,6 +55,8 @@ public class SettingsController {
     public TextField ApiPort;
     @FXML
     public TextField timestampFil;
+    @FXML
+    public TextField autoadvanceTime;
     //-----
 
     private MainController mainController;
@@ -67,6 +69,7 @@ public class SettingsController {
     protected void initialize() {
         ApiPort.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
         programFileUpdateTime.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
+        autoadvanceTime.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
     }
 
     public List<Control> toSave() {
@@ -89,7 +92,8 @@ public class SettingsController {
                 programFile,
                 programFileUpdateTime,
                 ApiPort,
-                timestampFil
+                timestampFil,
+                autoadvanceTime
         );
     }
 
@@ -177,6 +181,15 @@ public class SettingsController {
         this.programFile.setText(programFile);
     }
 
+    public Long getaAutoadvanceTime() {
+        try {
+            return Long.valueOf(autoadvanceTime.getText());
+        } catch (Exception e) {
+            autoadvanceTime.setText("15");
+            return 15L;
+        }
+    }
+
     public int getProgramFileUpdateTime() {
         try {
             return Integer.valueOf(programFileUpdateTime.getText());
@@ -194,7 +207,7 @@ public class SettingsController {
         try {
             return Integer.valueOf(ApiPort.getText());
         } catch (Exception e) {
-            programFileUpdateTime.setText("1616");
+            ApiPort.setText("1616");
             return 1616;
         }
     }

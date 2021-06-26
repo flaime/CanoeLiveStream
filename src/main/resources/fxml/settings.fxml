@@ -111,6 +111,13 @@
                                 <Label text=".txt"
                                        GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="18"/>
 
+                                <Label text="Autoadvance tid:" GridPane.rowIndex="19"/>
+                                <TextField fx:id="autoadvanceTime" text="15" GridPane.columnIndex="1"
+                                           GridPane.rowIndex="19"/>
+                                <Label text="sec"
+                                       GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="19"/>
+                                <Label text="Autoadvance tiden ändingar tid tar bara efekt vid omstart."
+                                       GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="20"/>
                             </children>
                   </GridPane>
                </content>
