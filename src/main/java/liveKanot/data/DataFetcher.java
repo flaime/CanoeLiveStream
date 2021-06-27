@@ -22,7 +22,7 @@ public class DataFetcher {
 
     public Race getRace(String raceNumber, String competition, String baseUrl, boolean removeÅÄÖ) throws UnirestException {
         if (competition.equalsIgnoreCase("testdata"))
-            return MockData.getMockRaceRandom(raceNumber, competition, removeÅÄÖ);
+            return MockData.getMockRaceRandom(removeÅÄÖ, raceNumber);
         else
             return new Race(getRaceJsonNode(raceNumber, competition, baseUrl).getObject(), raceNumber, removeÅÄÖ);
     }

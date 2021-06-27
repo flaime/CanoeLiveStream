@@ -71,8 +71,8 @@ public class Race {
             return settings.getAFinal();
         else if (type.equals("MH"))
             return settings.getMellanHeat();
-        else if (type.length() == 2 && type.substring(1, 1).equals("F"))
-            return type.substring(0, 1) + settings.getFinalÖvrigt();
+        else if (type.length() == 2 && type.substring(1, 2).equals("F"))
+            return type.substring(0, 1) + "-" + settings.getFinalÖvrigt();
 
         else
             return type;
