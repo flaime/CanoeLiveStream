@@ -27,14 +27,23 @@ public class RaceData {
     public static void createAndWritProgramFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = sortedForProgram(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
         addExtra(resultFiles, 20);
-        createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
+        createAndWriteFile(settings, fileName, resultFiles, limit, offset);
     }
 
     public static void createAndWriteResultFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = sortedForResult(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
         addExtra(resultFiles, 20);
 
-        createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
+        createAndWriteFile(settings, fileName, resultFiles, limit, offset);
+    }
+
+    public static String createResultFilesStringInternal(Race race, SettingsController settings) {
+        List<ResultatFileEntity> resultFiles = sortedForResult(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
+
+        resultFiles.stream().map(resultatFileEntity -> {
+            return resultatFileEntity.getBana() + " " + resultatFileEntity.
+        });
+
     }
 
     private static void addExtra(List<ResultatFileEntity> resultFiles, int numberToAdd) {
@@ -54,7 +63,7 @@ public class RaceData {
         });
     }
 
-    public static void createAndWriteFile(Race race, SettingsController settings, String fileName, List<ResultatFileEntity> resultFiles, int limit, int offset) throws IOException {
+    public static void createAndWriteFile(SettingsController settings, String fileName, List<ResultatFileEntity> resultFiles, int limit, int offset) throws IOException {
         FileWriterOwn.writeFile(fileName + ".json",
                 RaceData.getResultFilesJson(
                         RaceData.offsetAndLimit(

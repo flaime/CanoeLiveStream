@@ -39,6 +39,12 @@ public class MainController {
     private TextArea resultHeder;
 
     @FXML
+    private TextArea startlistBody;
+
+    @FXML
+    private TextArea resultBody;
+
+    @FXML
     private TextArea startlistHeder;
 
     @FXML
@@ -318,6 +324,9 @@ public class MainController {
         resultHeder.setText(RaceData.getRaceInfoText(race, settings));
 
         RaceData.createAndWriteResultFiles(race, settings, settings.getResultatFile(), 15, 0);
+
+        RaceData.sortedForResult(race, RaceData.getResultatFileEntityForRace(race, settings), settings)
+        startlistBody.setText();
     }
 
     @FXML
