@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="610.0" prefWidth="450.0" GridPane.rowIndex="16" xmlns="http://javafx.com/javafx/11.0.1"
+<VBox prefHeight="800.0" prefWidth="450.0" GridPane.rowIndex="16" xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="liveKanot.UiController.SettingsController">
     <children>
         <AnchorPane id="AnchorPane">
@@ -106,7 +106,7 @@
                                        GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="17"/>
 
                                 <Label text="timestamp fil" GridPane.rowIndex="18"/>
-                                <TextField fx:id="timestampFil" text="timestamp" GridPane.columnIndex="1"
+                                <TextField fx:id="timestampFil" text="timestamp" GridPane.columnIndex="1" disable="true"
                                            GridPane.rowIndex="18"/>
                                 <Label text=".txt"
                                        GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="18"/>
