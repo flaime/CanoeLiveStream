@@ -9,6 +9,7 @@ import liveKanot.utils.FileWriterOwn;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProgramData {
@@ -25,7 +26,7 @@ public class ProgramData {
         ProgramFileEntity programFileEntity = new ProgramFileEntity("", "", "", "", "");
         DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-        races.stream().forEach(it -> {
+        races.stream().sorted(Comparator.comparingInt(r -> Integer.parseInt(r.getRaceNumber()))).forEach(it -> {
             programFileEntity.setHeat(programFileEntity.getHeat() + (programFileEntity.getHeat().equals("") ? "" : "\n") + it.getRaceNumber());
             programFileEntity.setDag_Tid(programFileEntity.getDag_Tid() + (programFileEntity.getDag_Tid().equals("") ? "" : "\n") + it.getDateTime().format(customFormatter));
             programFileEntity.setKlass(programFileEntity.getKlass() + (programFileEntity.getKlass().equals("") ? "" : "\n") + it.normaliseRaceClass());
