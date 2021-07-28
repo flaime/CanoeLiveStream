@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,14 +28,14 @@ public class RaceData {
     public static void createAndWritProgramFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = sortedForProgram(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
         addExtra(resultFiles, 20);
-        createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
+        createAndWriteFile(settings, fileName, resultFiles, limit, offset);
     }
 
     public static void createAndWriteResultFiles(Race race, SettingsController settings, String fileName, int limit, int offset) throws IOException {
         List<ResultatFileEntity> resultFiles = sortedForResult(race, RaceData.getResultatFileEntityForRace(race, settings), settings);
         addExtra(resultFiles, 20);
 
-        createAndWriteFile(race, settings, fileName, resultFiles, limit, offset);
+        createAndWriteFile(settings, fileName, resultFiles, limit, offset);
     }
 
     private static void addExtra(List<ResultatFileEntity> resultFiles, int numberToAdd) {
@@ -54,7 +55,7 @@ public class RaceData {
         });
     }
 
-    public static void createAndWriteFile(Race race, SettingsController settings, String fileName, List<ResultatFileEntity> resultFiles, int limit, int offset) throws IOException {
+    public static void createAndWriteFile(SettingsController settings, String fileName, List<ResultatFileEntity> resultFiles, int limit, int offset) throws IOException {
         FileWriterOwn.writeFile(fileName + ".json",
                 RaceData.getResultFilesJson(
                         RaceData.offsetAndLimit(
@@ -66,17 +67,19 @@ public class RaceData {
                 settings.getFilePath());
     }
 
+    private static ToIntFunction<ResultatFileEntity> resultatFileEntityBanaInt = entity -> (int) (Integer.parseInt(entity.getBana()));
+
     private static List<ResultatFileEntity> sortedForResult(Race race, List<ResultatFileEntity> resultatAndProgramFileEntityForRace, SettingsController settings) {
         Comparator<ResultatFileEntity> compareByBana = Comparator
                 .comparing(ResultatFileEntity::getLoppTid)
-                .thenComparing(ResultatFileEntity::getBana);
+                .thenComparingInt(resultatFileEntityBanaInt);
         List<ResultatFileEntity> resultFiles = resultatAndProgramFileEntityForRace.stream().sorted(compareByBana).collect(Collectors.toList());
         return resultFiles;
     }
 
     private static List<ResultatFileEntity> sortedForProgram(Race race, List<ResultatFileEntity> resultatAndProgramFileEntityForRace, SettingsController settings) {
         Comparator<ResultatFileEntity> compareByBana = Comparator
-                .comparing(ResultatFileEntity::getBana);
+                .comparingInt(resultatFileEntityBanaInt);
         List<ResultatFileEntity> resultFiles = resultatAndProgramFileEntityForRace.stream().sorted(compareByBana).collect(Collectors.toList());
         return resultFiles;
     }

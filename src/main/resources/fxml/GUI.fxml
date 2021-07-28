@@ -32,7 +32,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Hjälp">
             <items>
-                <MenuItem disable="true" mnemonicParsing="false" text="Om"/>
+                <MenuItem mnemonicParsing="false" onAction="#showVersionLogInfo" text="Version log"/>
             </items>
           </Menu>
         </menus>
@@ -73,10 +73,10 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="296.0">
               <children>
                   <Label layoutX="14.0" layoutY="6.0" text="Resultat"/>
-                  <ToggleButton layoutX="106.0" layoutY="118.0" mnemonicParsing="false" text="Autoadvance"
-                                AnchorPane.bottomAnchor="14.666666666666657" AnchorPane.leftAnchor="106.0"
-                                AnchorPane.rightAnchor="104.66666666666669" AnchorPane.topAnchor="118.0"
-                                fx:id="autoadvance"/>
+                  <ToggleButton fx:id="autoadvance" layoutX="106.0" layoutY="118.0" mnemonicParsing="false"
+                                text="Autoadvance" AnchorPane.bottomAnchor="14.666666666666657"
+                                AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="104.66666666666669"
+                                AnchorPane.topAnchor="118.0"/>
                   <Label layoutX="65.0" layoutY="20.0" text="Heat #"/>
                   <TextField fx:id="loppNummerResultatListor" alignment="CENTER" layoutX="65.0" layoutY="36.0"
                              prefHeight="25.0" prefWidth="57.0" text="1"/>

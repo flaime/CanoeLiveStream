@@ -23,7 +23,6 @@ import liveKanot.entities.Race;
 import java.io.IOException;
 import java.util.*;
 
-import static javafx.stage.WindowEvent.*;
 import static spark.Spark.*;
 import static spark.Spark.get;
 
@@ -332,6 +331,24 @@ public class MainController {
 
     private Stage settingsStage = new Stage();
     SettingsController settings = new SettingsController();
+
+    @FXML
+    public void showVersionLogInfo() {
+
+        List<String> log = Arrays.asList(
+                "1.5.0 - Uppdatera sorteringen av program filen",
+                "1.6.0 - Sorterar banorna korekt efter bannummer och lagt till detta fönster"
+        );
+        Collections.reverse(log);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Version log");
+        alert.setHeaderText("Vad som har uppdaterats med var version");
+        alert.setContentText(String.join("\n", log));
+
+        alert.showAndWait();
+
+    }
 
     @FXML
     public void openSettings() throws IOException {
