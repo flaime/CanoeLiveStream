@@ -336,13 +336,13 @@ public class MainController {
     public void showVersionLogInfo() {
 
         List<String> log = Arrays.asList(
-                "1.5.0 - Uppdatera sorteringen av program filen",
-                "1.6.0 - Sorterar banorna korekt efter bannummer och lagt till detta fönster"
+                "1.5.0 - Uppdatera sorteringen av programfilen",
+                "1.6.0 - Sorterar banorna korrekt efter bannummer i form av tal och lagt till detta fönster"
         );
         Collections.reverse(log);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Version log");
+        alert.setTitle("Versionslogg");
         alert.setHeaderText("Vad som har uppdaterats med var version");
         alert.setContentText(String.join("\n", log));
 
