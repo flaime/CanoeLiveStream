@@ -1,8 +1,8 @@
 package liveKanot.UiController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -271,6 +271,22 @@ public class MainController {
     public void nextRaceStartList() throws IOException {
         nextRace(loppNummerStartListor);
         updateStartListor();
+        callNextChapter();
+    }
+
+    private void callNextChapter() {
+        try {
+            int raceNumber = Integer.parseInt(loppNummerStartListor.getText());
+            Race race = getData(loppNummerStartListor.getText());
+            String info = RaceData.getRaceInfoText(race, settings);
+            new DataFetcher().puchChapterData(settings, raceNumber, info, race.normaliseRaceClass(), race.getDistance());
+        } catch (NumberFormatException e) {
+            loppNummerStartListor.setText("");
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -283,6 +299,7 @@ public class MainController {
     public void previousRaceStartList() throws IOException {
         previousRace(loppNummerStartListor);
         updateStartListor();
+        callNextChapter();
     }
 
     private void previousRace(TextField textField) {
@@ -291,7 +308,6 @@ public class MainController {
 
             textField.setText((result - 1) + "");
 
-//            updateData();
         } catch (Exception e) {
             textField.setText("");
         }

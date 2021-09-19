@@ -1,12 +1,18 @@
 package liveKanot.data;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import liveKanot.UiController.SettingsController;
 import liveKanot.entities.Race;
+import liveKanot.utils.YouTubeChapterInfo;
 import org.json.JSONArray;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +58,31 @@ public class DataFetcher {
         return races;
     }
 
+    public void puchChapterData(SettingsController settings, int raceNumber, String info, String raceClass, String distance) throws UnirestException, JsonProcessingException {
+        YouTubeChapterInfo youTubeChapterInfo = new YouTubeChapterInfo(
+                settings.getCompetition(),
+                null,
+                raceNumber,
+                info,
+                LocalDateTime.now(),
+                raceClass,
+                distance
+        );
+        ObjectMapper objectMapper = new ObjectMapper()
+//                .registerModule(new ParameterNamesModule())
+//                .registerModule(new Jdk8Module())
+                .registerModule(new JavaTimeModule());
+        ;
+
+        String baseUrl = settings.getUrl();
+        String body = objectMapper.writeValueAsString(youTubeChapterInfo);
+        HttpResponse<String> stringHttpResponse = Unirest
+                .post((baseUrl.endsWith("/") ? baseUrl : baseUrl + "/") + "api/chapter/" + settings.getCompetition() + "?apiKey=" + settings.apiKey.getText())
+                .header("Content-Type", "application/json")
+                .body(body)
+                .asString();
+        System.out.println("Response: " + stringHttpResponse.getBody());
+    }
 
     public JsonNode fetchUrlToJson(String url) throws UnirestException {
 

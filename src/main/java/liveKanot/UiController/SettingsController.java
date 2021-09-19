@@ -57,6 +57,8 @@ public class SettingsController {
     public TextField timestampFil;
     @FXML
     public TextField autoadvanceTime;
+    @FXML
+    public TextField apiKey;
     //-----
 
     private MainController mainController;
@@ -70,6 +72,9 @@ public class SettingsController {
         ApiPort.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
         programFileUpdateTime.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
         autoadvanceTime.setTextFormatter(ControllerUtils.getNumberFormaterForTextField());
+        competition.textProperty().addListener((observable, oldValue, newValue) -> {
+            apiKey.setText(ControllerUtils.generateApiKey());
+        });
     }
 
     public List<Control> toSave() {
@@ -93,7 +98,8 @@ public class SettingsController {
                 programFileUpdateTime,
                 ApiPort,
                 timestampFil,
-                autoadvanceTime
+                autoadvanceTime,
+                apiKey
         );
     }
 
