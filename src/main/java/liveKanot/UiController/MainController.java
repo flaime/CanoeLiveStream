@@ -353,7 +353,8 @@ public class MainController {
 
         List<String> log = Arrays.asList(
                 "1.5.0 - Uppdatera sorteringen av programfilen",
-                "1.6.0 - Sorterar banorna korrekt efter bannummer i form av tal och lagt till detta fönster"
+                "1.6.0 - Sorterar banorna korrekt efter bannummer i form av tal och lagt till detta fönster",
+                "1.7.0 - Tillagt stöd for för spara data för kapitel på youtube"
         );
         Collections.reverse(log);
 
