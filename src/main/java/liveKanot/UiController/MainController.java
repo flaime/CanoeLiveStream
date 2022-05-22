@@ -158,7 +158,6 @@ public class MainController {
 
         get("/startListor/next", (req, res) -> {
             nextRaceStartList();
-            nextRace(loppNummerStartListor);
             return loppNummerStartListor.getText();
         });
 
@@ -303,27 +302,53 @@ public class MainController {
     }
 
     private void previousRace(TextField textField) {
-        try {
-            Integer result = Integer.valueOf(textField.getText());
-
-            textField.setText((result - 1) + "");
-
-        } catch (Exception e) {
-            textField.setText("");
-        }
+        String previousRace = findPreviousRace(textField);
+        textField.setText(previousRace);
     }
 
     public void nextRace(TextField textField) {
+        String nexRace = findNextRace(textField);
+        textField.setText(nexRace);
+    }
+
+    /**
+     * Trying to find the last race that exist if non is found it returns an empty string.
+     * It tris looking back 20 numbers and if non is found then it will default to an empty string.
+     *
+     * @param textField
+     */
+    private String findPreviousRace(TextField textField) {
+        int activeRaceNumber = -1;
         try {
-            Integer result = Integer.valueOf(textField.getText());
-
-            textField.setText((result + 1) + "");
-
-//            updateData();
-        } catch (Exception e) {
-            textField.setText("");
+            activeRaceNumber = Integer.valueOf(textField.getText());
+        } catch (Exception ignored) {
         }
 
+        for (int i = 1; i < 30; i++) {
+            if (getData((activeRaceNumber - i) + "").getRaceNumber() != null)
+                return (activeRaceNumber - i) + "";
+        }
+        return "";
+    }
+
+    /**
+     * Trying to find the next race that exist if non is found it returns an empty string.
+     * It tris looking for 20 numbers and if non is found then it will default to an empty string.
+     *
+     * @param textField
+     */
+    private String findNextRace(TextField textField) {
+        int activeRaceNumber = -1;
+        try {
+            activeRaceNumber = Integer.valueOf(textField.getText());
+        } catch (Exception ignored) {
+        }
+
+        for (int i = 1; i < 30; i++) {
+            if (getData((activeRaceNumber + i) + "").getRaceNumber() != null)
+                return (activeRaceNumber + i) + "";
+        }
+        return "";
     }
 
     @FXML
@@ -405,8 +430,10 @@ public class MainController {
             //TODO add error handeling
             loppNummerResultatListor.setText("Could not write to file");
             loppNummerStartListor.setText("Could not write to file");
+        } catch (Exception e) {
+            System.out.println("Could not find race " + raceNumber);
         }
-        return new Race(null, null, true);
+        return new Race(null, null, null, -1,null,null);
     }
 
 }
