@@ -325,7 +325,7 @@ public class MainController {
         }
 
         for (int i = 1; i < 30; i++) {
-            if (getData((activeRaceNumber - i) + "").getRaceNumber() != null)
+            if (getData((activeRaceNumber - i) + "").raceExist())
                 return (activeRaceNumber - i) + "";
         }
         return "";
@@ -345,7 +345,7 @@ public class MainController {
         }
 
         for (int i = 1; i < 30; i++) {
-            if (getData((activeRaceNumber + i) + "").getRaceNumber() != null)
+            if (getData((activeRaceNumber + i) + "").raceExist())
                 return (activeRaceNumber + i) + "";
         }
         return "";
@@ -379,7 +379,8 @@ public class MainController {
         List<String> log = Arrays.asList(
                 "1.5.0 - Uppdatera sorteringen av programfilen",
                 "1.6.0 - Sorterar banorna korrekt efter bannummer i form av tal och lagt till detta fönster",
-                "1.7.0 - Tillagt stöd for för spara data för kapitel på youtube"
+                "1.7.0 - Tillagt stöd for för spara data för kapitel på youtube",
+                "1.8.0 - Auto advanced söker efter nästa lopp med resultat, fix bugg i nästa lopp via API och gå till nästa/föregående lopp skippar nu icke existerande lopp"
         );
         Collections.reverse(log);
 
