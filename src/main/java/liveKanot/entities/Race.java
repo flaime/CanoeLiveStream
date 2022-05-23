@@ -1,6 +1,5 @@
 package liveKanot.entities;
 
-import com.mashape.unirest.http.JsonNode;
 import liveKanot.UiController.SettingsController;
 import org.json.JSONObject;
 
@@ -139,6 +138,17 @@ public class Race {
             banor.add(bana);
         }
         return banor;
+    }
+
+    public boolean raceExist() {
+        return getRaceNumber() != null;
+    }
+
+    public boolean hasResult() {
+        if (banor != null) {
+            boolean timeExist = banor.stream().anyMatch(bana -> bana.tid != null && !bana.tid.equals("null"));
+            return timeExist;
+        } else return false;
     }
 
     private static String replaceåäö(String forname) {

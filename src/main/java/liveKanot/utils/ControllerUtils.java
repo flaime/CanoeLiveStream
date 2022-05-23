@@ -28,14 +28,11 @@ public class ControllerUtils {
     public static int findNextRace(int currentRace, MainController mainController) {
         System.out.println("Autoadvance updated");
         int nextResultNumber = ++currentRace;
-        for (int i = 0; i < 20; i++) {
-            try {
-                Race race = mainController.getData(nextResultNumber + "");
-                System.out.println(race);
+        for (int i = 0; i < 30; i++) {
+            Race race = mainController.getData(nextResultNumber + "");
+            if (race.raceExist() && race.hasResult())
                 return nextResultNumber;
-            } catch (JSONException e) {
-                System.out.println("Race does not exist");
-            }
+            nextResultNumber++;
         }
         return 1;
 
